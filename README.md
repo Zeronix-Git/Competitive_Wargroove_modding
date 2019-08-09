@@ -6,4 +6,4 @@ Current features:
 
 ### Installing the mod
 
-Download the folder and drag it onto your wargroove-mod-packer.exe to install the mod. 
+Download the zip from Github and extract the contents. Drag the mod folder onto your wargroove-mod-packer.exe to install the mod. 
