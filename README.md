@@ -1,5 +1,5 @@
 # Competitive Wargroove modding
 A mod for competitive Wargroove play. 
 
-Currently supported features: 
-1. No RNG mode is enabled for all game modes, not just puzzle
+Current features: 
+- No RNG. (Note: If you have "display damage range" turned on in settings, you'll still see a damage range, but the actual damage will have no RNG.)
