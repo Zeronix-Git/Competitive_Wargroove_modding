@@ -17,3 +17,4 @@ These are features that would be nice to have. They may or may not get implement
 ### Contributors
 
 - Pokachi (Ophelia on Discord)
+-- Updated damage display to reflect no RNG
