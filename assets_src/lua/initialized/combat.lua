@@ -16,7 +16,9 @@ function Combat.init()
   OldCombat.canUseWeapon = Combat.canUseWeapon
 end
 
--- This allows us to display damage on all enemies. Even if they are out of range.
+-- This allows us to display damage on all enemies. Even if they are out of range. It works for base game because every unit have exactly one weapon.
+-- But for example if the units have 2 weapons with weapon A is dealing 50 damage when enemy is 1 tile away, and weapon B is dealing 10 damage
+-- when enemy is 2 tile away. Then in this case, we should deal 10 damage when enemy is 2 tiles away, but we will end up doing 50 damage
 function Combat:canUseWeapon(weapon, moved, delta, facing)
     return true
 end
@@ -28,9 +30,7 @@ function Combat:getDamage(attacker, defender, solveType, isCounter, attackerPos,
 
 	local delta = {x = defenderPos.x - attackerPos.x, y = defenderPos.y - attackerPos.y }
 	local moved = attackerPath and #attackerPath > 1
-    print(solveType)
-    print(attacker.id)
-    print(defender.id)
+    
 	local randomValue = 0.5
 	if solveType == "random" and Wargroove.isRNGEnabled() then
 		local values = { attacker.id, attacker.unitClassId, attacker.startPos.x, attacker.startPos.y, attackerPos.x, attackerPos.y,
