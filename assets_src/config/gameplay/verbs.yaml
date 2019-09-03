@@ -5,7 +5,6 @@ verbs:
     icon: ui/icons/unit_action_icon_pet.png
     name: ui_unit_verbs_undo
     targetted: false
-    directTarget: false
     scriptName: verbs/undo
 
 ...

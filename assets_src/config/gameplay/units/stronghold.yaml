@@ -1,9 +1,0 @@
----
-
-modifyingUnitClasses:
-  - id: hq
-    add:
-      verbs:
-        - undo
-
-...
