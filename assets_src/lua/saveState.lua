@@ -4,67 +4,102 @@ local Wargroove = require "wargroove/wargroove"
 
 if(not saveState) then
 
-  saveState = {}
-  saveState.loadedState = {}
+    saveState = {}
+    saveState.loadedState = {}
 
-  print("Reloading saveState")
-  print("Loaded state", saveState.loadedState)
+    --
+    -- Override these
+    --
 
-  --
-  -- Override these
-  --
+    function saveState:modSpecificSave(newState)
+    end
 
-  function saveState:modSpecificSave(newState)
-  end
+    function saveState:modSpecificLoad(playerId)
+    end
 
-  function saveState:modSpecificLoad(playerId)
-  end
+    function saveState:modSpecificLoadOnPost(playerId)
+    end
 
 
-  --
-  -- Saving and Undoing Scripts
-  --
+    --
+    -- Saving and Undoing Scripts
+    --
 
-  function saveState:save(playerId)
+    function saveState:copyTable(orig)
+        local copy
+        if type(orig) == 'table' then
+            copy = {}
+            for orig_key, orig_value in pairs(orig) do
+                if(orig_key ~= "unitClass") then
+                    copy[orig_key] = self:copyTable(orig_value)
+                end
+            end
+        else -- number, string, boolean, etc
+            copy = orig
+        end
+        return copy
+    end
 
-      local newState = {}
-      -- Gold
-      print(playerId, Wargroove.getMoney(playerId))
-      newState.gold = Wargroove.getMoney(playerId)
-      print("Now:", newState.gold, newState)
+    function saveState:overrideTable(rep, orig)
+        for orig_key, orig_value in pairs(orig) do
+            rep[orig_key] = orig_value
+        end
+    end
 
-      -- Units
+    function saveState:save(playerId)
+        local newState = {}
+        -- Save your player's gold value
+        newState.gold = Wargroove.getMoney(playerId)
 
-      -- Map Counters
+        -- Save states of all units
+        saveUnits = {}
+        for _, unit in ipairs(Wargroove.getUnitsAtLocation()) do
+            -- Copy unit into saveUnits
+            local copiedTable = self:copyTable(unit)
+            print(copiedTable.id)
+            table.insert(saveUnits, copiedTable)
+        end
+        newState.units = saveUnits
 
-      -- Map Flags
-
-      self:modSpecificSave(newState)
-      
-      saveState.loadedState[playerId] = newState
-  end
-
-  function saveState:canLoad(playerId)
-      return (saveState.loadedState[playerId] ~= nil)
-  end
-
-  function saveState:load(playerId)
-      print(playerId)
-      print(saveState.loadedState[playerId].gold)
-      -- Gold
-      Wargroove.setMoney(playerId, saveState.loadedState[playerId].gold)
-
-      -- Units
-
-      -- Map Counters
-
-      -- Map Flags
-
-      self:modSpecificLoad(playerId)
+        -- Extensible section if this module is used in other mods
+        self:modSpecificSave(newState)
         
-      saveState.loadedState[playerId] = nil
-  end
+        newState.playerId = playerId
+        saveState.loadedState = newState
+    end
+
+    function saveState:canLoad(playerId)
+        return (saveState.loadedState ~= nil and saveState.loadedState.playerId == playerId)
+    end
+
+    function saveState:load(playerId)
+        -- Load gold
+        Wargroove.setMoney(playerId, saveState.loadedState.gold)
+
+        -- Extensible section if this module is used in other mods
+        self:modSpecificLoad(playerId)
+    end
+
+    function saveState:loadOnPost(playerId)
+        for _, unit in ipairs(saveState.loadedState.units) do
+            local u = Wargroove.getUnitById(unit.id)
+            self:overrideTable(u, unit)
+            Wargroove.updateUnit(u)
+        end
+
+        -- Extensible section if this module is used in other mods
+        self:modSpecificLoadOnPost(playerId)
+
+        -- Clear loadedState so players can't undo into the same state multiple times
+        saveState.loadedState = nil
+    end
 
 end
 
 return saveState
+
+-- Todo:
+-- When loading, check if there are any NEW units, and destroy them
+-- Save and load gold of other players
+-- Save and load map counters and flags
+-- Save and load trigger flags

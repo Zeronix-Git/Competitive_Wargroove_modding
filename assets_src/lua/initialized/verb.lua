@@ -6,17 +6,15 @@ local OldVerb = require "wargroove/verb"
 local Verb = {}
 
 function Verb.init()
-  -- Overwrite to make UNDO REAL!!!
   OldVerb.executeEntry = function (self, unitId, targetPos, strParam, path)
-    print("Executing action!")
     return Resumable.run(function ()
-        Wargroove.clearCaches()
-        local unit = Wargroove.getUnitById(unitId)
-  
-        -- Save data
+        -- Save data before getting unit
         if(self.id ~= "undo") then
           saveState:save(Wargroove.getCurrentPlayerId())
         end
+
+        Wargroove.clearCaches()
+        local unit = Wargroove.getUnitById(unitId)
   
         self:execute(unit, targetPos, strParam, path)
         self:updateSelfUnit(unit, targetPos, path)
@@ -25,7 +23,6 @@ function Verb.init()
         Wargroove.updateUnit(unit)
     end)
   end
-  print("Initializing Verb")
 end
 
 return Verb

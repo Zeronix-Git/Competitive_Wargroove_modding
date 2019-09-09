@@ -3,9 +3,9 @@
 modifyingUnitClasses:
   - id: hq
     replace:
-        canBeCaptured: false
-        canReinforce: false
         verbs:
           - undo
+          - wait
+          - cancel
 
 ...

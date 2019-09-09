@@ -2,7 +2,7 @@
 
 verbs:
   - id: undo
-    icon: ui/icons/unit_action_icon_pet.png
+    icon: ui/icons/unit_action_icon_undo.png
     name: ui_unit_verbs_undo
     targetted: false
     scriptName: verbs/undo

@@ -13,4 +13,8 @@ function Undo:execute(unit, targetPos, strParam, path)
     saveState:load(unit.playerId)
 end
 
+function Undo:onPostUpdateUnit(unit, targetPos, strParam, path)
+    saveState:loadOnPost(unit.playerId)
+end
+
 return Undo
