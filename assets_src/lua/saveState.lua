@@ -115,7 +115,7 @@ if(not saveState) then
         -- Bring units BACK
         for _, unit in pairs(saveState.loadedState[#saveState.loadedState].units) do
             if unit.pos.x >= 0 and unit.pos.y >= 0 then
-                self:spawnCopy(unit, saveState.loadedState[#saveState.loadedState].units)
+                self:spawnCopy(unit.id, saveState.loadedState[#saveState.loadedState].units)
             end
         end
 
@@ -140,7 +140,7 @@ if(not saveState) then
 
         -- Loaded units
         for _, id in ipairs(unitInfo.loadedUnits) do
-            local transportedUnit = self:spawnCopy(allUnits[id], allUnits)
+            local transportedUnit = self:spawnCopy(id, allUnits)
             local Load = require "verbs/load"
             Load:execute(transportedUnit, unitInfo.pos, "")
         end
