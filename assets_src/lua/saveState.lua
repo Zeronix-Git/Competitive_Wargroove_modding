@@ -40,8 +40,7 @@ if(not saveState) then
     end
 
     function saveState:save(playerId)
-        if saveState.loadedState[#saveState.loadedState].playerId ~= playerId
-            or saveState.loadedState[#saveState.loadedState].turnNumber ~= Wargroove.getTurnNumber() then
+        if not self:canLoad(playerId) then
             -- Flush savestate
             for i, _ in ipairs(saveState.loadedState) do
                 saveState.loadedState[i] = nil
@@ -71,12 +70,14 @@ if(not saveState) then
         self:modSpecificSave(newState)
         
         newState.playerId = playerId
+        newState.turnNumber = Wargroove.getTurnNumber()
         table.insert(saveState.loadedState, newState)
-        print(#saveState.loadedState)
     end
 
     function saveState:canLoad(playerId)
-        return (saveState.loadedState[#saveState.loadedState] ~= nil and saveState.loadedState[#saveState.loadedState].playerId == playerId)
+        return (saveState.loadedState[#saveState.loadedState] ~= nil and
+            saveState.loadedState[#saveState.loadedState].playerId == playerId and
+            saveState.loadedState[#saveState.loadedState].turnNumber == Wargroove.getTurnNumber())
     end
 
     function saveState:load(playerId)
@@ -158,5 +159,3 @@ if(not saveState) then
 end
 
 return saveState
-
--- Not undoing if the turn is different

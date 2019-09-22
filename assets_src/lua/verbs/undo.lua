@@ -15,6 +15,8 @@ end
 
 function Undo:onPostUpdateUnit(unit, targetPos, strParam, path)
     saveState:loadOnPost(unit.playerId)
+
+    unit.hadTurn = false;
 end
 
 return Undo
