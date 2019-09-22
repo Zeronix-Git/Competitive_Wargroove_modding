@@ -19,6 +19,5 @@ These are features that would be nice to have. They may or may not get implement
 - Pokachi (Ophelia on Discord)
 -- Updated damage display to reflect no RNG
 -- Unlocked damage calculator to global range
-
 - kingoftheconnors (Kanor on Discord)
 -- Added undo action
