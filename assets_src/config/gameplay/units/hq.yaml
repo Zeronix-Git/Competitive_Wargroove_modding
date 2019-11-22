@@ -1,0 +1,11 @@
+---
+
+modifyingUnitClasses:
+  - id: hq
+    replace:
+        verbs:
+          - undo
+          - wait
+          - cancel
+
+...
