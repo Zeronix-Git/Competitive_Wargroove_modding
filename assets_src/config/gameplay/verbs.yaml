@@ -7,4 +7,10 @@ verbs:
     targetted: false
     scriptName: verbs/undo
 
+  - id: set_damage
+    icon: ui/icons/unit_action_icon_set_damage.png
+    name: ui_unit_verbs_set_damage
+    targetted: false
+    scriptName: verbs/set_damage
+
 ...

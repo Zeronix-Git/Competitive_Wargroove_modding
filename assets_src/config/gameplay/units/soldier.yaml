@@ -1,0 +1,8 @@
+---
+
+modifyingUnitClasses:
+  - id: soldier
+    add:
+        verbs:
+          - set_damage
+...
