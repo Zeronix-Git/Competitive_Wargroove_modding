@@ -3,6 +3,5 @@
 # This is the string configuration file for English.
 en-GB:
   ui_unit_verbs_undo: Undo
-  ui_unit_verbs_set_damage: Set Damage
   
 ...
