@@ -23,7 +23,7 @@ These are features that would be nice to have. They may or may not get implement
 
 Same as the base competitive mod, but leaves RNG in the game. Intended to be used for replay analysis only. 
 
-## Features
+### Features
 - Undo action used at HQ to undo your last move
 - TODO: Add a means of setting the damage for the next attack. 
 
