@@ -3,7 +3,6 @@ This mod allows players to undo moves within a turn, letting them explore differ
 
 ### Features
 - Undo action used at HQ to undo your last move
-- 
 
 ### Installation
 Download the zip from Github and extract the contents. Drag the mod folder onto your wargroove-mod-packer.exe to install the mod. 
