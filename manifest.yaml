@@ -1,8 +1,8 @@
 ---
 
-id: CompetitiveWargroove                   
-name: "Competitive Wargroove base mod"              
+id: AnalysisMod                
+name: "Analysis Mod"              
 author: "Zeronix"
-description: "A base mod for competitive wargroove" 
+description: "A mod which allows analysis of games by undoing moves within a turn" 
 
 ...
