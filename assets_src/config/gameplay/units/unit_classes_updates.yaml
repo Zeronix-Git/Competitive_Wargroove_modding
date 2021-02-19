@@ -6,7 +6,9 @@ modifyingUnitClasses:
     replace:
         verbs:
           - undo
-          - wait
+          - undo_turn
+          - save_slot
+          - load_slot
           - cancel
   
   - id: archer

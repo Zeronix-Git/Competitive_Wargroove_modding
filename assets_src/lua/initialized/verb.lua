@@ -1,16 +1,23 @@
 local Wargroove = require "wargroove/wargroove"
 local Resumable = require "wargroove/resumable"
-local saveState = require "saveState"
+local SaveState = require "SaveState"
 
 local OldVerb = require "wargroove/verb"
 local Verb = {}
+
+local excludedVerbs = {
+  undo=true,
+  undo_turn=true,
+  save_slot=true,
+  load_slot=true
+}
 
 function Verb.init()
   OldVerb.executeEntry = function (self, unitId, targetPos, strParam, path)
     return Resumable.run(function ()
         -- Save data before getting unit
-        if(self.id ~= "undo") then
-          saveState:save(Wargroove.getCurrentPlayerId())
+        if not excludedVerbs[self.id] then
+          SaveState:save(Wargroove.getCurrentPlayerId())
         end
 
         Wargroove.clearCaches()

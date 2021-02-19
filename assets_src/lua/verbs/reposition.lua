@@ -8,16 +8,13 @@ function Reposition:getTargetType()
     return "empty"
 end
 
-function Reposition:canExecuteAnywhere(unit)
-    return true
-end
-
-function Reposition:execute(unit, targetPos, strParam, path)
-    unit.pos = targetPos
-    Wargroove.updateUnit(unit)
+function Reposition:getMaximumRange(unit, endPos)
+    return 96
 end
 
 function Reposition:onPostUpdateUnit(unit, targetPos, strParam, path)
+    unit.pos = targetPos
+    --Wargroove.updateUnit(unit)
     unit.hadTurn = false
 end
 
