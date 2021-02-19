@@ -6,4 +6,10 @@ verbs:
     name: ui_unit_verbs_undo
     targetted: false
     scriptName: verbs/undo
+
+  - id: reposition
+    icon: ui/icons/unit_action_icon_reposition.png
+    name: ui_unit_verbs_reposition
+    targetted: true
+    scriptName: verbs/reposition
 ...
