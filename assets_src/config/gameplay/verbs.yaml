@@ -8,13 +8,13 @@ verbs:
     scriptName: verbs/undo
   
   - id: undo_turn
-    icon: ui/icons/unit_action_icon_undo.png
+    icon: ui/icons/unit_action_icon_undo_turn.png
     name: ui_unit_verbs_undo_turn
     targetted: false
     scriptName: verbs/undo_turn
 
   - id: save_slot
-    icon: ui/icons/unit_action_icon_undo.png
+    icon: ui/icons/unit_action_icon_save_slot.png
     name: ui_unit_verbs_save_slot
     targetted: true
     targetColour: target
@@ -22,7 +22,7 @@ verbs:
     scriptName: verbs/save_slot
     
   - id: load_slot
-    icon: ui/icons/unit_action_icon_undo.png
+    icon: ui/icons/unit_action_icon_load_slot.png
     name: ui_unit_verbs_load_slot
     targetted: true
     targetColour: target
