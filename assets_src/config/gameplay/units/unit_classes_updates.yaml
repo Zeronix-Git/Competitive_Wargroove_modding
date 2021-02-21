@@ -1,0 +1,235 @@
+---
+
+modifyingUnitClasses:
+
+  - id: hq
+    replace:
+        verbs:
+          - undo
+          - undo_turn
+          - save_slot
+          - load_slot
+          - cancel
+  
+  - id: archer
+    add:
+      verbs:
+        - reposition
+  
+  - id: ballista
+    add:
+      verbs:
+        - reposition
+
+  - id: balloon
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_caesar
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_darkmercia
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_elodie
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_emeric
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_greenfinger
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_koji
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_mercia
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_mercival
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_nuru
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_ragna
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_ryota
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_sedge
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_sigrid
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_tenri
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_twins
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_valder
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_vesper
+    add:
+      verbs:
+        - reposition
+  
+  - id: commander_wulfar
+    add:
+      verbs:
+        - reposition
+  
+  - id: crystal
+    add:
+      verbs:
+        - reposition
+  
+  - id: dog
+    add:
+      verbs:
+        - reposition
+
+  - id: dragon
+    add:
+      verbs:
+        - reposition
+  
+  - id: drone
+    add:
+      verbs:
+        - reposition
+
+  - id: giant
+    add:
+      verbs:
+        - reposition
+  
+  - id: harpoonship
+    add:
+      verbs:
+        - reposition
+  
+  - id: harpy
+    add:
+      verbs:
+        - reposition
+
+  - id: knight
+    add:
+      verbs:
+        - reposition
+  
+  - id: mage
+    add:
+      verbs:
+        - reposition
+
+  - id: merman
+    add:
+      verbs:
+        - reposition
+  
+  - id: rifleman
+    add:
+      verbs:
+        - reposition
+  
+  - id: soldier
+    add:
+      verbs:
+        - reposition
+
+  - id: spearman
+    add:
+      verbs:
+        - reposition
+  
+  - id: thief
+    add:
+      verbs:
+        - reposition
+
+  - id: thief_with_gold
+    add:
+      verbs:
+        - reposition
+  
+  - id: travelboat
+    add:
+      verbs:
+        - reposition
+  
+  - id: trebuchet
+    add:
+      verbs:
+        - reposition
+  
+  - id: turtle
+    add:
+      verbs:
+        - reposition
+  
+  - id: villager
+    add:
+      verbs:
+        - reposition
+
+  - id: vine
+    add:
+      verbs:
+        - reposition
+  
+  - id: wagon
+    add:
+      verbs:
+        - reposition
+
+  - id: warship
+    add:
+      verbs:
+        - reposition
+  
+  - id: witch
+    add:
+      verbs:
+        - reposition
+  
+  
+...

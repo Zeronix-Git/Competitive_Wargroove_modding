@@ -3,6 +3,6 @@
 id: AnalysisMod                
 name: "Analysis Mod"              
 author: "Zeronix"
-description: "A mod which allows analysis of games by undoing moves within a turn" 
+description: "A mod which allows analysis of games by undoing moves" 
 
 ...

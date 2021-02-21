@@ -1,22 +1,23 @@
 local Wargroove = require "wargroove/wargroove"
 local Verb = require "wargroove/verb"
-local saveState = require "saveState"
+local SaveState = require "SaveState"
 
 local Undo = Verb:new()
 Undo.id = "undo"
 
 function Undo:canExecuteAnywhere(unit)
-    return saveState:canLoad(unit.playerId)
+    return SaveState:canLoad(unit.playerId)
 end
 
 function Undo:execute(unit, targetPos, strParam, path)
-    saveState:load(unit.playerId)
+    SaveState:load(unit.playerId)
 end
 
 function Undo:onPostUpdateUnit(unit, targetPos, strParam, path)
-    saveState:loadOnPost(unit.playerId)
-
-    unit.hadTurn = false;
+    local shiftedPlayerId = SaveState:getUnitShiftedPlayerId(unit.id)
+    SaveState:loadOnPost(unit.playerId)
+    unit.hadTurn = false
+    unit.playerId = shiftedPlayerId
 end
 
 return Undo
