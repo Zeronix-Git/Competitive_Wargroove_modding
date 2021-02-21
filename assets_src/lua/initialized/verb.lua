@@ -28,6 +28,9 @@ function Verb.init()
         self:onPostUpdateUnit(unit, targetPos, strParam, path)
   
         Wargroove.updateUnit(unit)
+
+        Wargroove.setMetaLocationArea("last_move_path", path)
+        Wargroove.setMetaLocation("last_unit", unit.pos)
     end)
   end
 end

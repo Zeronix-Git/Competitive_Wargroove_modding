@@ -17,6 +17,9 @@ Unit actions
 - Undoing a move that would take you back to turn of the previous player will result in all units switching owner, to allow the player to move them
 - The current turn and player portrait displayed in the UI cannot be updated by the mod. So they might be wrong after you undo moves or load states.
 
+### Known issues
+- After state loads, some units may be displayed with sprites from the wrong faction (even if color and player are correct)
+
 ### Installation
 1. Download the zip from Github and extract the contents
 2. Drag the mod folder onto your wargroove-mod-packer.exe to install the mod
