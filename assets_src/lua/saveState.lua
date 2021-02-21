@@ -83,13 +83,6 @@ if(not SaveState) then
     end
 
     function SaveState:generate(playerId)
-        --[[if not self:canLoad(playerId) then
-            -- Flush savestate
-            for i, _ in ipairs(saveState.lastState) do
-                saveState.lastState[i] = nil
-            end
-        end]]
-
         local newState = {}
         -- Save your players' gold values
         newState.gold = {}
@@ -102,9 +95,9 @@ if(not SaveState) then
         local saveUnits = {}
         for _, unit in ipairs(Wargroove.getUnitsAtLocation()) do
             -- Copy unit into saveUnits
-            local copiedTable = utils:copyTable(unit)
-            saveUnits[unit.id] = copiedTable
-            copiedTable.playerId = SaveState:getShiftedPlayerId(unit.playerId, true)
+            local unitCopy = utils:copyTable(unit)
+            saveUnits[unit.id] = unitCopy
+            unitCopy.playerId = SaveState:getShiftedPlayerId(unit.playerId, true)
         end
         newState.units = saveUnits
 
@@ -214,6 +207,8 @@ if(not SaveState) then
     function SaveState:loadOnPost(playerId)
         local state = SaveState.lastState
 
+        Wargroove.clearCaches()
+
         local units = utils:copyTable(state.units)
 
         for _, unit in pairs(units) do
@@ -229,9 +224,12 @@ if(not SaveState) then
                 units[unit.id] = nil
             else
                 -- This unit did not exist before. Kill it
-                unit:setHealth(0, unit.id)
-                Wargroove.updateUnit(unit)
+                --unit:setHealth(0, unit.id)
+                --Wargroove.updateUnit(unit)
+                Wargroove.removeUnit(unit.id)
             end
+
+            Wargroove.clearCaches()
         end
 
         -- Bring units BACK
@@ -240,6 +238,7 @@ if(not SaveState) then
                 self:spawnCopy(unit.id, units)
             end
         end
+
 
         -- Extensible section if this module is used in other mods
         self:modSpecificLoadOnPost(playerId)
@@ -255,8 +254,7 @@ if(not SaveState) then
     function SaveState:spawnCopy(unitId, allUnits)
         local unitInfo = allUnits[unitId]
         Wargroove.spawnUnit(unitInfo.playerId, unitInfo.pos, unitInfo.unitClassId, unitInfo.hadTurn)
-
-        Wargroove.waitFrame()
+        Wargroove.clearCaches()
         
         -- Health
         local unit = Wargroove.getUnitAt(unitInfo.pos)
@@ -276,6 +274,7 @@ if(not SaveState) then
         unit.grooveCharge = unitInfo.grooveCharge
 
         Wargroove.updateUnit(unit)
+        Wargroove.clearCaches()
 
         return unit
     end
